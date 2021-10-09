@@ -1,2 +1,2 @@
-DigitDash Project for my Mazda Daily :car:
+DigitDash Project for my Mazda Daily :racecar:
 Dedicated to my Pops :heart:
