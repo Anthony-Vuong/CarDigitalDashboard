@@ -6,10 +6,10 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 
 Window {
-    width: 640
-    height: 480
+    width: 400
+    height: 440
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Digital Gauge")
 
 
     Rectangle {
@@ -17,6 +17,8 @@ Window {
         height: 400
 
         CircularGauge {
+
+
             id: gauge
             anchors.fill: parent
             style: CircularGaugeStyle {
@@ -62,6 +64,28 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
             }
+
+
+            value: accelerating ? maximumValue : 0
+                anchors.centerIn: parent
+
+                property bool accelerating: false
+
+                Keys.onSpacePressed: accelerating = true
+                Keys.onReleased: {
+                    if (event.key === Qt.Key_Space) {
+                        accelerating = false;
+                        event.accepted = true;
+                    }
+                }
+
+                Component.onCompleted: forceActiveFocus()
+
+                Behavior on value {
+                    NumberAnimation {
+                        duration: 1000
+                    }
+                }
         }
     }
 }
